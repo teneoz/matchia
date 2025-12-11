@@ -1,0 +1,173 @@
+# FootPredict AI - Cursor Rules
+
+## Project Context
+This is a football match analysis platform using AI. We analyze millions of data points to provide pre-match insights and predictions.
+
+## Tech Stack
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS + Shadcn/ui
+- **Database**: Supabase (PostgreSQL)
+- **Auth**: Supabase Auth
+- **AI**: Anthropic Claude API
+- **Data**: API-Football (RapidAPI)
+- **Deployment**: Vercel
+
+## Code Style & Best Practices
+
+### General
+- Use functional components with TypeScript
+- Prefer `const` over `let`, avoid `var`
+- Use descriptive variable names in English
+- Add JSDoc comments for complex functions
+- Keep functions small and focused (single responsibility)
+- Use early returns to avoid nested conditionals
+
+### Next.js Specific
+- Use App Router conventions (not Pages Router)
+- Implement proper loading.tsx and error.tsx
+- Use Server Components by default, Client Components only when needed
+- Mark Client Components with 'use client' directive
+- Use Server Actions for form submissions
+- Implement proper metadata for SEO
+
+### TypeScript
+- Enable strict mode
+- Define interfaces for all data structures
+- Avoid `any` type - use `unknown` if type is truly unknown
+- Use type guards for runtime type checking
+- Leverage utility types (Partial, Pick, Omit, etc.)
+
+### React Best Practices
+- Use hooks appropriately (useState, useEffect, useMemo, useCallback)
+- Implement proper error boundaries
+- Memoize expensive computations
+- Avoid prop drilling - use Context or state management when needed
+- Keep components pure and predictable
+
+### Styling
+- Use Tailwind utility classes
+- Follow mobile-first responsive design
+- Use Shadcn/ui components when available
+- Create custom components in /components/ui for reusability
+- Use CSS variables for theming (defined in globals.css)
+
+### File Organization
+- Group related files in feature folders
+- Use barrel exports (index.ts) for cleaner imports
+- Keep components, hooks, and utils separate
+- Place types in /lib/types
+- API routes in /app/api
+
+### Naming Conventions
+- Components: PascalCase (MatchCard.tsx)
+- Files: kebab-case for non-components (football-api.ts)
+- Functions: camelCase (fetchMatchData)
+- Constants: UPPER_SNAKE_CASE (API_BASE_URL)
+- Types/Interfaces: PascalCase (MatchData, UserProfile)
+- CSS classes: kebab-case (match-card-header)
+
+### API & Data Fetching
+- Use fetch with proper error handling
+- Implement loading and error states
+- Cache API responses when appropriate
+- Use SWR or React Query for client-side data fetching
+- Validate all external data with Zod or similar
+
+### Supabase Integration
+- Always use server-side client for sensitive operations
+- Implement Row Level Security (RLS) policies
+- Use prepared statements to prevent SQL injection
+- Handle auth state changes properly
+- Use Supabase Edge Functions for complex backend logic
+
+### AI Integration (Claude)
+- Keep prompts in separate files for maintainability
+- Implement rate limiting for API calls
+- Cache AI responses when appropriate
+- Handle API errors gracefully with fallbacks
+- Monitor token usage
+
+### Security
+- Never commit API keys or secrets
+- Use environment variables for all sensitive data
+- Implement CSRF protection
+- Validate and sanitize all user inputs
+- Use HTTPS everywhere
+- Implement proper CORS policies
+
+### Performance
+- Lazy load components when appropriate
+- Optimize images with Next.js Image component
+- Implement proper caching strategies
+- Minimize bundle size
+- Use dynamic imports for heavy components
+
+### Testing (Future)
+- Write unit tests for utility functions
+- Integration tests for critical user flows
+- E2E tests for main features
+- Test error cases and edge conditions
+
+### Accessibility
+- Use semantic HTML elements
+- Implement proper ARIA attributes
+- Ensure keyboard navigation works
+- Maintain proper color contrast ratios
+- Add alt text to all images
+
+### Git Practices
+- Write clear, descriptive commit messages
+- Use conventional commits (feat:, fix:, docs:, etc.)
+- Create feature branches for new work
+- Keep commits atomic and focused
+- Don't commit commented-out code
+
+## Project-Specific Rules
+
+### Match Analysis
+- Always validate match data before analysis
+- Cache analysis results for 1 hour
+- Include confidence scores in predictions
+- Log all predictions for accuracy tracking
+
+### User Experience
+- Show loading skeletons, not blank screens
+- Provide clear error messages
+- Implement optimistic UI updates
+- Add success confirmations for user actions
+
+### Data Management
+- Update match data every 15 minutes during match days
+- Archive old predictions after 30 days
+- Implement pagination for large data sets
+
+### Internationalization (Future)
+- Prepare code for i18n
+- Use date/time formatting libraries
+- Keep all user-facing strings in constants
+
+## Environment Variables Required
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+ANTHROPIC_API_KEY=
+FOOTBALL_API_KEY=
+NEXT_PUBLIC_APP_URL=
+```
+
+## Commands
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run type-check` - Run TypeScript compiler check
+
+## Notes
+- Focus on creating a smooth, fast user experience
+- AI analysis should feel magical but be transparent
+- Keep the codebase maintainable and well-documented
+- Prioritize mobile experience
+- Build with scalability in mind from the start
+
