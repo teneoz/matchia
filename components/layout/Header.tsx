@@ -1,7 +1,7 @@
 'use client'
 
 import { useAuth } from '@/hooks/useAuth'
-import { Activity, User, LogOut, Settings } from 'lucide-react'
+import { Activity, User, LogOut, Settings, MessageSquare } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { signOut } from '@/app/actions/auth'
@@ -113,6 +113,14 @@ export function Header() {
                       >
                         <Activity className="w-4 h-4" />
                         Dashboard
+                      </Link>
+                      <Link
+                        href="/ai/chat"
+                        className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition text-slate-300 hover:text-white"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <MessageSquare className="w-4 h-4" />
+                        Assistant IA
                       </Link>
                       <Link
                         href="/projects"

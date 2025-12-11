@@ -161,3 +161,45 @@ export interface UserProject {
   updated_at: string;
 }
 
+// AI Chat Types
+export interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: string;
+}
+
+export interface ChatConversation {
+  id: string;
+  user_id: string;
+  messages: ChatMessage[];
+  title?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+// AI Usage Types
+export type AIFeatureType = 'prediction' | 'chat' | 'analysis' | 'content';
+
+export interface AIUsageLog {
+  id: string;
+  user_id: string;
+  feature_type: AIFeatureType;
+  tokens_used?: number;
+  cost_usd?: number;
+  model_version?: string;
+  created_at: string;
+}
+
+// AI Preferences Types
+export interface UserAIPreferences {
+  id: string;
+  user_id: string;
+  preferred_model: string;
+  chat_temperature: number;
+  prediction_confidence_threshold: number;
+  auto_explain_predictions: boolean;
+  preferred_language: string;
+  created_at: string;
+  updated_at: string;
+}
+
