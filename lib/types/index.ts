@@ -147,3 +147,17 @@ export interface CreditTransaction {
   created_at: string;
 }
 
+// User Project Types
+export interface UserProject {
+  id: string;
+  user_id: string;
+  name: string;
+  description?: string;
+  predictions: string[]; // Array of prediction IDs
+  settings: Record<string, unknown>;
+  is_public: boolean;
+  share_token: string;
+  created_at: string;
+  updated_at: string;
+}
+

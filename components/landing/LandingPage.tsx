@@ -1,28 +1,13 @@
 import React from 'react';
+import Link from 'next/link';
+import { Header } from '@/components/layout/Header';
 import { Activity, TrendingUp, Target, Zap, Brain, BarChart3, Shield, Clock } from 'lucide-react';
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Header */}
-      <header className="container mx-auto px-4 py-6">
-        <nav className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
-              <Activity className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-2xl font-bold text-white">FootPredict AI</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <button className="text-slate-300 hover:text-white transition px-4 py-2">
-              Connexion
-            </button>
-            <button className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-2 rounded-lg hover:shadow-lg hover:shadow-emerald-500/25 transition">
-              Commencer
-            </button>
-          </div>
-        </nav>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 text-center">
@@ -44,12 +29,12 @@ export default function LandingPage() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-          <button className="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl hover:shadow-emerald-500/30 transition transform hover:scale-105">
+          <Link href="/signup" className="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl hover:shadow-emerald-500/30 transition transform hover:scale-105 text-center">
             Essai gratuit 7 jours
-          </button>
-          <button className="w-full sm:w-auto bg-white/5 text-white px-8 py-4 rounded-xl text-lg font-semibold border border-white/10 hover:bg-white/10 transition backdrop-blur">
+          </Link>
+          <Link href="/login" className="w-full sm:w-auto bg-white/5 text-white px-8 py-4 rounded-xl text-lg font-semibold border border-white/10 hover:bg-white/10 transition backdrop-blur text-center">
             Voir une démo
-          </button>
+          </Link>
         </div>
 
         {/* Stats */}
@@ -178,9 +163,9 @@ export default function LandingPage() {
           <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
             Rejoignez des milliers d'utilisateurs qui font confiance à notre IA pour leurs prédictions
           </p>
-          <button className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-10 py-5 rounded-xl text-lg font-semibold hover:shadow-2xl hover:shadow-emerald-500/40 transition transform hover:scale-105">
+          <Link href="/signup" className="inline-block bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-10 py-5 rounded-xl text-lg font-semibold hover:shadow-2xl hover:shadow-emerald-500/40 transition transform hover:scale-105">
             Commencer gratuitement
-          </button>
+          </Link>
           <p className="text-slate-400 text-sm mt-4">Aucune carte bancaire requise</p>
         </div>
       </section>
