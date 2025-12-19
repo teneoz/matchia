@@ -29,3 +29,7 @@ echo "   1. Exécutez le fichier database-schema.sql dans Supabase SQL Editor"
 echo "   2. Redémarrez le serveur: npm run dev"
 echo "   3. Testez la connexion: curl http://localhost:3000/api/test-supabase"
 
+
+
+
+

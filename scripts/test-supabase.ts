@@ -98,3 +98,7 @@ async function testSupabaseConnection() {
 // Exécuter le script
 testSupabaseConnection();
 
+
+
+
+

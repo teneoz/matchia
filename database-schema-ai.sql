@@ -108,3 +108,7 @@ CREATE TRIGGER trigger_update_user_ai_preferences_updated_at
   FOR EACH ROW
   EXECUTE FUNCTION update_user_ai_preferences_updated_at();
 
+
+
+
+

@@ -137,3 +137,7 @@ Si le problème persiste, activez le mode debug :
 
 **Note** : Les améliorations apportées permettent maintenant d'identifier précisément le problème. Les erreurs sont plus claires et détaillées.
 
+
+
+
+

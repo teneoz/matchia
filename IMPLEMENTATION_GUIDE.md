@@ -529,3 +529,7 @@ export function useProjects() {
 
 **Note**: Ce guide est complémentaire au `DEVELOPMENT_PLAN.md`. Utilisez les deux documents ensemble pour un développement complet.
 
+
+
+
+

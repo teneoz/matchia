@@ -46,3 +46,7 @@ echo "   1. Arrêtez le serveur (Ctrl+C)"
 echo "   2. Relancez: npm run dev"
 echo ""
 
+
+
+
+

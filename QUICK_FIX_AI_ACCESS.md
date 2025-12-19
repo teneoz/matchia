@@ -75,3 +75,7 @@ Si ça fonctionne, tout est OK ! 🎉
 
 **Note** : Les tables dans Supabase existent déjà, donc ce n'est pas un problème de base de données.
 
+
+
+
+

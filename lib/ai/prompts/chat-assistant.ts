@@ -108,3 +108,7 @@ FORMAT DE RÉPONSE:
 Réponds maintenant à la question de l'utilisateur:`
 }
 
+
+
+
+

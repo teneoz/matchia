@@ -256,3 +256,7 @@ POST /api/ai/predictions
 **Version**: 1.0
 **Status**: ✅ Prêt pour production (après tests)
 
+
+
+
+

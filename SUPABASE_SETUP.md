@@ -71,3 +71,7 @@ Le schéma SQL crée les tables suivantes :
 - Les tables doivent être créées via le SQL Editor
 - Le middleware a été configuré pour fonctionner sans Supabase (mode développement)
 
+
+
+
+

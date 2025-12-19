@@ -499,3 +499,7 @@ Le MCP Supabase permet de:
 **Dernière mise à jour**: 2024
 **Version du plan**: 1.0
 
+
+
+
+

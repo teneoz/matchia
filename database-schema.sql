@@ -52,6 +52,13 @@ CREATE TABLE teams (
 CREATE INDEX idx_teams_api_id ON teams(api_id);
 CREATE INDEX idx_teams_name ON teams(name);
 
+-- RLS for teams (public read)
+ALTER TABLE teams ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Teams are viewable by everyone"
+  ON teams FOR SELECT
+  USING (true);
+
 -- ============================================
 -- LEAGUES & COMPETITIONS
 -- ============================================
@@ -67,6 +74,13 @@ CREATE TABLE leagues (
 );
 
 CREATE INDEX idx_leagues_api_id ON leagues(api_id);
+
+-- RLS for leagues (public read)
+ALTER TABLE leagues ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Leagues are viewable by everyone"
+  ON leagues FOR SELECT
+  USING (true);
 
 -- ============================================
 -- MATCHES
@@ -135,6 +149,13 @@ CREATE TABLE match_statistics (
 
 CREATE INDEX idx_match_statistics_match ON match_statistics(match_id);
 
+-- RLS for match_statistics (public read)
+ALTER TABLE match_statistics ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Match statistics are viewable by everyone"
+  ON match_statistics FOR SELECT
+  USING (true);
+
 -- ============================================
 -- TEAM FORM & STANDINGS
 -- ============================================
@@ -164,6 +185,13 @@ CREATE TABLE team_standings (
 
 CREATE INDEX idx_team_standings_team ON team_standings(team_id);
 CREATE INDEX idx_team_standings_league ON team_standings(league_id, season);
+
+-- RLS for team_standings (public read)
+ALTER TABLE team_standings ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Team standings are viewable by everyone"
+  ON team_standings FOR SELECT
+  USING (true);
 
 -- ============================================
 -- AI PREDICTIONS
@@ -285,13 +313,17 @@ CREATE TRIGGER update_teams_updated_at
 
 -- Function to create profile on user signup
 CREATE OR REPLACE FUNCTION handle_new_user()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
 BEGIN
   INSERT INTO profiles (id, email, full_name)
   VALUES (NEW.id, NEW.email, NEW.raw_user_meta_data->>'full_name');
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
 
 -- Trigger for new user creation
 CREATE TRIGGER on_auth_user_created
@@ -300,7 +332,11 @@ CREATE TRIGGER on_auth_user_created
 
 -- Function to deduct credits on prediction
 CREATE OR REPLACE FUNCTION deduct_credits_on_prediction()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
 BEGIN
   -- Deduct 1 credit from user
   UPDATE profiles
@@ -313,7 +349,7 @@ BEGIN
   
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
 
 -- Trigger for credit deduction
 CREATE TRIGGER on_prediction_created
@@ -325,7 +361,12 @@ CREATE TRIGGER on_prediction_created
 -- ============================================
 
 -- View for upcoming matches with team info
-CREATE VIEW upcoming_matches_with_teams AS
+-- Note: Created with security_invoker = true to ensure RLS policies are respected
+-- This guarantees the view uses the permissions of the querying user
+DROP VIEW IF EXISTS upcoming_matches_with_teams;
+CREATE VIEW upcoming_matches_with_teams
+WITH (security_invoker = true)
+AS
 SELECT 
   m.id,
   m.api_id,
